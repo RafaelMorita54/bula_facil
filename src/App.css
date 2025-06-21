@@ -523,13 +523,13 @@
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  background-color: rgba(0, 0, 0, 0.6) !important;
+  background-color: rgba(0, 0, 0, 0.75) !important;
   z-index: 9999 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   padding: 20px !important;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(3px);
   animation: fadeIn 0.2s ease-out;
 }
 
@@ -547,8 +547,11 @@
   position: relative !important;
   margin: 0 !important;
   transform: none !important;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
   animation: modalSlideUp 0.3s ease-out !important;
+  background-color: #ffffff !important;
+  opacity: 1 !important;
+  border: 1px solid #e0e0e0 !important;
 }
 
 @keyframes modalSlideUp {
