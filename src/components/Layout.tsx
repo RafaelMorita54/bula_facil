@@ -22,7 +22,11 @@ function Layout({ children }: LayoutProps) {
   };
 
   const handleMenuClick = () => {
-    navigate("/dashboard");
+    if (location.pathname === "/") {
+      navigate("/search-menu");
+    } else {
+      navigate("/dashboard");
+    }
   };
 
   return (

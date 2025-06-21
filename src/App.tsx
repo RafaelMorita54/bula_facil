@@ -6,12 +6,15 @@ import {
 } from "react-router-dom";
 import Layout from "./components/Layout";
 import Landing from "./pages/Landing";
+import DesktopLanding from "./pages/DesktopLanding";
 import SearchMenu from "./pages/SearchMenu";
+import DesktopSearchMenu from "./pages/DesktopSearchMenu";
 import SearchResults from "./pages/SearchResults";
 import MedicationDetails from "./pages/MedicationDetails";
 import EnhancedMedicationDetails from "./pages/EnhancedMedicationDetails";
 import Dashboard from "./pages/Dashboard";
 import EnhancedDashboard from "./pages/EnhancedDashboard";
+import DesktopEnhancedDashboard from "./pages/DesktopEnhancedDashboard";
 import "./App.css";
 
 function App() {
@@ -60,20 +63,16 @@ function App() {
         // Desktop Routes - With shared layout
         <Layout>
           <Routes>
-            <Route
-              path="/"
-              element={<Navigate to="/search?q=ibuprofeno" replace />}
-            />
-            <Route
-              path="/search-menu"
-              element={<Navigate to="/search?q=ibuprofeno" replace />}
-            />
+            <Route path="/" element={<DesktopLanding />} />
+            <Route path="/search-menu" element={<DesktopSearchMenu />} />
             <Route path="/search" element={<SearchResults />} />
             <Route
               path="/medication/:medicationName"
-              element={<MedicationDetails />}
+              element={<EnhancedMedicationDetails />}
             />
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<DesktopEnhancedDashboard />} />
+            {/* Legacy routes for backward compatibility */}
+            <Route path="/landing" element={<DesktopLanding />} />
           </Routes>
         </Layout>
       )}

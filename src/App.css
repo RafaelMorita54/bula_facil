@@ -512,8 +512,9 @@
   color: #4fc3f7;
 }
 
-/* Import mobile styles */
+/* Import mobile and desktop styles */
 @import "./mobile.css";
+@import "./desktop.css";
 
 /* Responsive design */
 @media (max-width: 768px) {
