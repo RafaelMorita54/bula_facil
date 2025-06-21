@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { Medicine } from "../models/Medicine";
 
 interface AddMedicationDialogProps {
   isOpen: boolean;
   onClose: () => void;
   medicationName: string;
+  medicine?: Medicine;
   onAdd: (medication: any) => void;
 }
 
@@ -11,6 +13,7 @@ function AddMedicationDialog({
   isOpen,
   onClose,
   medicationName,
+  medicine,
   onAdd,
 }: AddMedicationDialogProps) {
   const [step, setStep] = useState(1);
@@ -56,15 +59,17 @@ function AddMedicationDialog({
       <p>Qual a dosagem prescrita para {medicationName}?</p>
 
       <div className="dose-options">
-        {["200mg", "400mg", "600mg", "800mg"].map((dose) => (
-          <button
-            key={dose}
-            className={`dose-option ${formData.dose === dose ? "selected" : ""}`}
-            onClick={() => setFormData({ ...formData, dose })}
-          >
-            {dose}
-          </button>
-        ))}
+        {(medicine?.commonDoses || ["200mg", "400mg", "600mg", "800mg"]).map(
+          (dose) => (
+            <button
+              key={dose}
+              className={`dose-option ${formData.dose === dose ? "selected" : ""}`}
+              onClick={() => setFormData({ ...formData, dose })}
+            >
+              {dose}
+            </button>
+          ),
+        )}
       </div>
 
       <div className="custom-dose">
@@ -90,20 +95,34 @@ function AddMedicationDialog({
       <p>Com que frequência você deve tomar este medicamento?</p>
 
       <div className="frequency-options">
-        {[
-          { label: "A cada 6 horas", value: "6 horas" },
-          { label: "A cada 8 horas", value: "8 horas" },
-          { label: "A cada 12 horas", value: "12 horas" },
-          { label: "Uma vez ao dia", value: "24 horas" },
-        ].map((freq) => (
-          <button
-            key={freq.value}
-            className={`frequency-option ${formData.frequency === freq.value ? "selected" : ""}`}
-            onClick={() => setFormData({ ...formData, frequency: freq.value })}
-          >
-            {freq.label}
-          </button>
-        ))}
+        {(
+          medicine?.commonFrequencies || [
+            "6 horas",
+            "8 horas",
+            "12 horas",
+            "24 horas",
+          ]
+        ).map((freq) => {
+          const label =
+            freq === "6 horas"
+              ? "A cada 6 horas"
+              : freq === "8 horas"
+                ? "A cada 8 horas"
+                : freq === "12 horas"
+                  ? "A cada 12 horas"
+                  : freq === "24 horas"
+                    ? "Uma vez ao dia"
+                    : freq;
+          return (
+            <button
+              key={freq}
+              className={`frequency-option ${formData.frequency === freq ? "selected" : ""}`}
+              onClick={() => setFormData({ ...formData, frequency: freq })}
+            >
+              {label}
+            </button>
+          );
+        })}
       </div>
 
       <div className="custom-frequency">
