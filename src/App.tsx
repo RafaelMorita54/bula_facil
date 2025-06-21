@@ -57,6 +57,9 @@ function App() {
                 </Layout>
               }
             />
+            {/* Fallback routes */}
+            <Route path="/landing" element={<Landing />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
       ) : (
@@ -73,6 +76,8 @@ function App() {
             <Route path="/dashboard" element={<DesktopEnhancedDashboard />} />
             {/* Legacy routes for backward compatibility */}
             <Route path="/landing" element={<DesktopLanding />} />
+            {/* Fallback route - redirect any unknown paths to landing */}
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Layout>
       )}

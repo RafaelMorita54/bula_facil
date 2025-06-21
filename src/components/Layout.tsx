@@ -18,6 +18,7 @@ function Layout({ children }: LayoutProps) {
   };
 
   const handleLogoClick = () => {
+    // Always go to landing page when logo is clicked
     navigate("/");
   };
 
